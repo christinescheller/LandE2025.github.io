@@ -90,10 +90,12 @@ h2, h3 {
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 10px;
+  font-size: 15px;
 }
 
-#portfolio li:hover {
+#portfolio li:hover a {
   background: #eee;
+  color: blue;
 }
 
 #portfolio a {
