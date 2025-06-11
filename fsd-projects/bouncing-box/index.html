@@ -66,7 +66,8 @@
 			//////////////////////////////////////////////////////////////////
 
 			// TODO 2 - Variable declarations 
-
+			var positionX = 0;
+			var points = 0;
 
 
 			/* 
@@ -75,7 +76,8 @@
 			turn it around! 
 			*/
 			function update() {
-
+				positionX = positionX + 10;
+				moveBoxTo(positionX);
 
 			};
 
@@ -85,7 +87,16 @@
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
+				//resets box to starting position
+				positionX = 0;
 
+				//score increases
+				points++;
+				changeBoxText(points);
+
+				//increase speed
+
+				
 
 			};
 
