@@ -31,7 +31,7 @@ var background = function (window) {
         // TODO (several):
         var tree;
         var buildings = [];
-
+        var bgImage1, bgImage2;
 
       
       
@@ -43,9 +43,30 @@ var background = function (window) {
             // TODO 1:
             // this currently fills the background with an obnoxious yellow;
             // you should modify both the height and color to suit your game
-            var backgroundFill = draw.rect(canvasWidth,groundY,'purple');
-            background.addChild(backgroundFill);
-            
+           var backgroundImage = draw.bitmap("img/runtime_background.jpg");
+            bgImage1 = draw.bitmap("img/runtime_background.jpg");
+            bgImage2 = draw.bitmap("img/runtime_background.jpg");
+
+            // Position them side by side
+            bgImage1.x = 0;
+            bgImage1.y = 0;
+            bgImage2.x = app.canvas.width;
+            bgImage2.y = 0;
+
+            // Match height of ground
+            var scaleY = groundY / bgImage1.image.height;
+            var scaleX = app.canvas.width / bgImage1.image.width;
+            bgImage1.scaleX = scaleX;
+            bgImage1.scaleY = scaleY;
+            bgImage2.scaleX = scaleX;
+            bgImage2.scaleY = scaleY;
+
+            background.addChild(bgImage1);
+            background.addChild(bgImage2);
+
+
+
+
             // TODO 2: - Add a moon and starfield
         
             for(var i = 0; i < 100; i++){
@@ -94,6 +115,23 @@ var background = function (window) {
             var canvasHeight = app.canvas.height;
             var groundY = ground.y;
             
+
+            var scrollSpeed = 1;
+
+            if (bgImage1 && bgImage2) {
+                bgImage1.x -= scrollSpeed;
+                bgImage2.x -= scrollSpeed;
+
+                // When one background is off screen, move it to the right of the other
+                if (bgImage1.x + bgImage1.getBounds().width * bgImage1.scaleX <= 0) {
+                    bgImage1.x = bgImage2.x + bgImage2.getBounds().width * bgImage2.scaleX;
+                }
+                if (bgImage2.x + bgImage2.getBounds().width * bgImage2.scaleX <= 0) {
+                    bgImage2.x = bgImage1.x + bgImage1.getBounds().width * bgImage1.scaleX;
+                }
+            }
+
+
             // TODO 3: Part 2 - Move the tree!
             tree.x -= 5;
 
@@ -111,6 +149,8 @@ var background = function (window) {
                 }
 
             }
+
+            
             
 
         } // end of update function - DO NOT DELETE
