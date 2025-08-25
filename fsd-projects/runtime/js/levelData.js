@@ -15,9 +15,7 @@ var makeLevelData = function (window) {
         number: 1,
         speed: -3,
         gameItems: [
-          { type: "sawblade", x: 400, y: groundY - 125, damage: 10},
-          { type: "sawblade", x: 600, y: groundY - 125, damage: 10},
-          { type: "sawblade", x: 800, y: groundY - 125, damage: 15},
+         
           { type: "enemy", x: 400, y: groundY - 50, speed: -3, image: "img/enemypuppy.png", offsetX: -35, offsetY: -25, scale: 0.5},
           { type: "enemy", x: 900, y: groundY - 50, speed: -2, image: "img/enemykitten.png", offsetX: -35, offsetY: -25, scale: 0.3},          
           { type: "enemy", x: 1200, y: groundY - 50, speed: -2, image: "img/enemypuppy.png", offsetX: -35, offsetY: -25, scale: 0.5},
@@ -31,9 +29,6 @@ var makeLevelData = function (window) {
         number: 2,
         speed: -3,
         gameItems: [
-          { type: "sawblade", x: 400, y: groundY - 125, damage: 10},
-          { type: "sawblade", x: 600, y: groundY - 125, damage: 10},
-          { type: "sawblade", x: 800, y: groundY - 125, damage: 15},
           { type: "enemy", x: 400, y: groundY - 50, speed: -3, image: "img/enemypuppy.png", offsetX: -35, offsetY: -25, scale: 0.5},
           { type: "enemy", x: 900, y: groundY - 50, speed: -2, image: "img/enemykitten.png", offsetX: -35, offsetY: -25, scale: 0.3},          
           { type: "enemy", x: 1200, y: groundY - 50, speed: -2, image: "img/enemypuppy.png", offsetX: -35, offsetY: -25, scale: 0.5},

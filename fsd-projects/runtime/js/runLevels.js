@@ -19,19 +19,19 @@ var runLevels = function (window) {
     // TODOs 5 through 11 go here
     // BEGIN EDITING YOUR CODE HERE
    
-    
-    function createSawBlade (x, y, damage){
+    function createSawBlade (x, y, damage, image, offsetX, offsetY, scale, rotation){
       var hitZoneSize = 25;
       var damageFromObstacle = damage;
       var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
       sawBladeHitZone.x = x;
       sawBladeHitZone.y = y;
-      
-      sawBladeHitZone.rotationalVelocity = 30;
+      sawBladeHitZone.rotationalVelocity = rotation;
       game.addGameItem(sawBladeHitZone);
-      var obstacleImage = draw.bitmap("img/sawblade.png");
-      obstacleImage.x = -25;
-      obstacleImage.y = -25;
+      var obstacleImage = draw.bitmap(image);
+      obstacleImage.x = offsetX;
+      obstacleImage.y = offsetY;
+      obstacleImage.scaleX = scale;
+      obstacleImage.scaleY = scale;
       sawBladeHitZone.addChild(obstacleImage);
     }
 
@@ -102,7 +102,7 @@ var runLevels = function (window) {
         var element = levelObjects[i];
 
         if(element.type === "sawblade"){
-          createSawBlade(element.x, element.y, element.damage);
+          createSawBlade(element.x, element.y, element.damage, element.image, element.offsetX, element.offsetY, element.scale, element.rotation);
         }
 
         if(element.type === "enemy"){
@@ -121,10 +121,9 @@ var runLevels = function (window) {
       //////////////////////////////////////////////
       // DO NOT EDIT CODE BELOW HERE
       //////////////////////////////////////////////
-      if (++currentLevel === levelData.length) {
-        startLevel = () => {
-          console.log("Congratulations!");
-        };
+      currentLevel++;
+      if (currentLevel === levelData.length) {
+        currentLevel = 0; // restart from level 0
       }
     }
     startLevel();

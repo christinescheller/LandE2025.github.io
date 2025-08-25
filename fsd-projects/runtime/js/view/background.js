@@ -33,6 +33,7 @@ var background = function (window) {
         var buildings = [];
         var bgImage1;
         var bgImage2;
+        var moon;
 
 
       
@@ -80,13 +81,20 @@ var background = function (window) {
                 background.addChild(circle);
             }
 
-            var moon = draw.bitmap("img/moon.png");
+            moon = draw.bitmap("img/moon.png");
+             moon.image.onload = function() {
+                moon.regX = moon.image.width / 2;
+                moon.regY = moon.image.height / 2;
+                moon.x = canvasWidth - 250 + moon.regX;
+                moon.y = groundY - 450 + moon.regY;
+            };
+
+            // Pre-position the moon before load (it will adjust later)
             moon.x = canvasWidth - 250;
             moon.y = groundY - 450;
             moon.scaleX = 0.5;
             moon.scaleY = 0.5;
             background.addChild(moon);
-
             
             
             // TODO 4: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
@@ -151,6 +159,10 @@ var background = function (window) {
                 if (bgImage2.x + imageWidth <= 0) {
                     bgImage2.x = bgImage1.x + imageWidth;
                 }
+            }
+
+            if (moon) {
+                moon.rotation += 5; // Adjust speed as desired
             }
 
         } // end of update function - DO NOT DELETE
